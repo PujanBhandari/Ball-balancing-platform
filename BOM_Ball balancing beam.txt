@@ -1,0 +1,8 @@
+1	V-piece beamholder-1	9	Servo motor holder
+2	V-piece beamholder-2	10	Camera stand
+3	Hinge piece		11	L-Profile
+4	V-shaped beam		12	Base leg foot
+5	8-mm bolt		13	Pushrod
+6	Base plate		14	Camera
+7	Servo motor		15	Arduino Uno
+8	Servo arm		
