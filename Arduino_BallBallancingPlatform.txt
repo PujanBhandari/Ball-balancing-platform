@@ -1,0 +1,84 @@
+
+//----------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx----------------------------------------------
+//Arduino Code for demonstration setup BallBalancingBeam
+int data = 90;
+#include <Servo.h>
+#include <Wire.h>
+float time;
+Servo servo;
+void setup() {
+	Serial.begin(115200); // set the baud rate
+	servo.attach(3);
+}
+void loop() {
+	if (Serial.available()){
+	  data = Serial.read();
+}	
+
+servo.write(data);
+delay(15);
+}
+
+
+//----------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx----------------------------------------------
+//Arduino Code for demonstration setup BallBalancingPlate
+
+String data;
+#include <Servo.h>
+#include <Wire.h>
+float time;
+
+Servo servoA;
+Servo servoB;
+Servo servoC;
+Servo servoD;
+
+float neutral_angleA = 45;
+float neutral_angleB = 45;
+float neutral_angleC = 45;
+float neutral_angleD = 45;
+
+
+void setup() {
+  
+Serial.begin(115200); // set the baud rate
+
+servoA.attach(5);
+//servoA.write(neutral_angleA);
+
+servoB.attach(6);
+//servoB.write(neutral_angleB);
+
+servoC.attach(9);
+//servoC.write(180-neutral_angleC);
+
+servoD.attach(11);
+//servoD.write(180-neutral_angleD);
+delay(20);
+}
+
+
+void loop() {
+  
+if (Serial.available()){
+  
+    String str_angle1  = Serial.readStringUntil(',');
+    Serial.read(); //next character is comma, so skip it using this
+    float angle1= str_angle1.toFloat();
+    servoA.write(angle1);
+
+
+    String str_angle2 = Serial.readStringUntil(',');
+    Serial.read();
+    float angle2= str_angle2.toFloat();
+    servoB.write(180-angle2);
+
+
+    String str_angle3  = Serial.readStringUntil(',');
+    float angle3= str_angle3.toFloat();
+    servoC.write(angle3);
+
+    String str_angle4  = Serial.readStringUntil(';');
+    float angle4= str_angle4.toFloat();
+    servoD.write(180-angle4);
+delay(20);
